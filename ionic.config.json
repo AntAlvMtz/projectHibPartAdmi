@@ -1,0 +1,7 @@
+{
+  "name": "consul-bus",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
