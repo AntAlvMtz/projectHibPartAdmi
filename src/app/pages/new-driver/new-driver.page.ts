@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DriverService } from 'src/app/services/driver.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { Driver } from 'src/app/models/driver';
 
 
 @Component({
@@ -15,15 +16,19 @@ export class NewDriverPage implements OnInit {
   public myForm: FormGroup;
   public validationMessages: object;
 
-  constructor(private driverService: DriverService, private fb: FormBuilder,private router:Router,private toastController: ToastController) { }
+  constructor(private driverService: DriverService, 
+    private fb: FormBuilder,
+    private router:Router,
+    private toastController: ToastController) { }
 
   ngOnInit() {
     this.myForm = this.fb.group({
       name:["", Validators.required],
-      age:["", Validators.compose([Validators.required, Validators.min(18)])],
-      phone:["",Validators.compose([Validators.required,Validators.minLength(12),Validators.maxLength(13),Validators.pattern(/\+\d+/)])],
-      license:["", Validators.compose([Validators.required])],
-      route:["", Validators.compose([Validators.required])],
+      age:["15", Validators.compose([Validators.required, Validators.min(18)])],
+      phone:["3111590910",Validators.compose([Validators.required,Validators.minLength(10),Validators.maxLength(10)])],
+      license:["DAA9916", Validators.compose([Validators.required])],
+      route:["PROGRESO 3"],
+      // route:["", Validators.compose([Validators.required])],
     });
 
     this.validationMessages = {
@@ -60,6 +65,12 @@ export class NewDriverPage implements OnInit {
   }
 
   public newDriver(){
+    let data = this.myForm.value as Driver;
+    data = {route:"Progreso 3",enabled:true,...data}
+    this.driverService.createDriver(data).subscribe(res=>{
+      console.log(res);
+      
+    })
     
   }
 }

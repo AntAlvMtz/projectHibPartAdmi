@@ -27,8 +27,10 @@ export class ViewDriversPage implements OnInit {
     }
     
     public goToDriver(driver:Driver){
-      console.log(driver);
-      
+      const data = driver
+      this.driverService.getOneDriver(data).subscribe(res=>{
+        console.log(res);        
+      });
     }
 
     public removeDriver(i: number) {

@@ -6,4 +6,5 @@ export class Driver {
     license: string;
     route:string;
     token: string;
+    enabled:boolean
 }
