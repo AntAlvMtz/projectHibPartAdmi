@@ -11,6 +11,18 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'view-driver',
+    loadChildren: () => import('./pages/view-driver/view-driver.module').then( m => m.ViewDriverPageModule)
+  },
+  {
+    path: 'view-route',
+    loadChildren: () => import('./pages/view-route/view-route.module').then( m => m.ViewRoutePageModule)
+  },
+  {
+    path: 'new-driver',
+    loadChildren: () => import('./pages/new-driver/new-driver.module').then( m => m.NewDriverPageModule)
+  },
 ];
 
 @NgModule({
