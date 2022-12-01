@@ -59,4 +59,7 @@ export class NewDriverPage implements OnInit {
     await toast.present();
   }
 
+  public newDriver(){
+    
+  }
 }

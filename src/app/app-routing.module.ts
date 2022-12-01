@@ -23,6 +23,11 @@ const routes: Routes = [
     path: 'new-driver',
     loadChildren: () => import('./pages/new-driver/new-driver.module').then( m => m.NewDriverPageModule)
   },
+  {
+    path: 'view-drivers',
+    loadChildren: () => import('./pages/view-drivers/view-drivers.module').then( m => m.ViewDriversPageModule)
+  },
+
 ];
 
 @NgModule({
