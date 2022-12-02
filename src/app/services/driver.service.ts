@@ -19,6 +19,8 @@ export class DriverService {
   }
 
   getOneDriver(data:any):Observable<any>{  
+    console.log("service",data);
+    
     return this.http.post(this.url+"drivers/getOne",data).pipe(map(res=>{   
       return res;
     }))

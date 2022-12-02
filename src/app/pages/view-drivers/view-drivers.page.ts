@@ -26,11 +26,12 @@ export class ViewDriversPage implements OnInit {
       this.router.navigate(['/new-driver']);
     }
     
-    public goToDriver(driver:Driver){
-      const data = driver
-      this.driverService.getOneDriver(data).subscribe(res=>{
-        console.log(res);        
-      });
+    public goToDriver(driver:Driver){      
+      const data = driver._id
+      // this.driverService.getOneDriver(data).subscribe(res=>{
+      //   console.log(res);        
+      // });
+      this.router.navigate(['view-driver'],{queryParams:{_id:data}})
     }
 
     public removeDriver(i: number) {

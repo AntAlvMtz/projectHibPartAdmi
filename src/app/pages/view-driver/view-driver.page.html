@@ -1,16 +1,49 @@
-<ion-header>
+<ion-header translucent no-border>
   <ion-toolbar>
-    <ion-title>view-driver</ion-title>
     <ion-buttons slot="start">
-      <ion-menu-button menu="main-menu"></ion-menu-button>
+      <ion-button color="dark">
+        <ion-back-button></ion-back-button>
+        Perfil de chofer
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end" [edge]="true">
-    <ion-fab-button (click)="goToNewDriver()">
-        <ion-icon name="add"></ion-icon>
+<ion-content fullscreen="true" slot="fixed">
+  <div class="center" *ngIf="driver===undefined">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+  <div class="card" *ngIf="driver!=undefined">
+    <div class="header">
+      <div class="avatar">
+        <img [src]="photo" alt="">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="user-meta ion-text-center">
+        <h1 class="playername">{{driver.name || ''}}</h1>
+        <ion-label class="second-text ">{{driver.license || ''}}
+          <ion-chip color="primary">
+            <ion-label>{{driver.route || ''}}</ion-label>
+          </ion-chip>
+        </ion-label>
+        <ion-label class="second-text ">Teléfono {{driver.phone || ''}}</ion-label>
+        <ion-label class="second-text ">Edad: {{driver.age || ''}}</ion-label>
+      </div>
+    </div>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="editDriver()">
+      <ion-icon name="pencil-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
