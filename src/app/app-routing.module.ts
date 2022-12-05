@@ -26,7 +26,11 @@ const routes: Routes = [
   {
     path: 'view-drivers',
     loadChildren: () => import('./pages/view-drivers/view-drivers.module').then( m => m.ViewDriversPageModule)
+  },  {
+    path: 'chat-bot',
+    loadChildren: () => import('./chat-bot/chat-bot.module').then( m => m.ChatBotPageModule)
   },
+
 
 ];
 
