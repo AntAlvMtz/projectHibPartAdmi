@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chatbot</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true"  [scrollEvents]="true">
+  <ion-row class="ion-margin-bottom">
+    <div class="parent">
+      <div class="div1"> </div>
+      <div class="div2"> </div>
+      <div class="div3">{{time | date:'shortTime'}}</div>
+      <div class="div4"></div>
+      <div class="div5"></div>
+      </div>
+    <ion-col size="12">
+      <ion-list >
+        <div class="message-box" *ngFor="let message of messages;let i = index"        
+        [class.sender-box]="i%2==0"
+        [class.reciver-box]="i%2==1">
+        <div class="message-label">
+          <ion-label
+          [class.sender-message]="i%2==0"
+          [class.reciver-message]="i%2==1">
+            <ion-icon *ngIf="i%2==1"name="logo-android"></ion-icon>
+            {{message.message}}
+            <ion-icon *ngIf="i%2==0" name="person-circle-outline"></ion-icon>
+          </ion-label>
+          <p class="time-label"
+          [class.sender-time]="i%2==0">{{message.time|date:'shortTime'}}</p>
+          </div>
+        </div>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size-lg="11" size-xs="6">
+        <ion-item>
+          <ion-input #input [(ngModel)]="question" type="text" placeholder="Mensaje" (keyup.enter)="clic()"> </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size-lg="1">
+        <ion-button expand="block" *ngIf="question" (click)="addQuestion()">
+          <ion-icon name="add"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

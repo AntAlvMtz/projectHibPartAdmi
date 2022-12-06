@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ChatBotPage } from './chat-bot.page';
+import { ChatbotPage } from './chatbot.page';
 
-describe('ChatBotPage', () => {
-  let component: ChatBotPage;
-  let fixture: ComponentFixture<ChatBotPage>;
+describe('ChatbotPage', () => {
+  let component: ChatbotPage;
+  let fixture: ComponentFixture<ChatbotPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChatBotPage ],
+      declarations: [ ChatbotPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ChatBotPage);
+    fixture = TestBed.createComponent(ChatbotPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

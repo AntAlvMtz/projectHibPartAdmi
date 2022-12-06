@@ -27,9 +27,14 @@ const routes: Routes = [
     path: 'view-drivers',
     loadChildren: () => import('./pages/view-drivers/view-drivers.module').then( m => m.ViewDriversPageModule)
   },  {
-    path: 'chat-bot',
-    loadChildren: () => import('./chat-bot/chat-bot.module').then( m => m.ChatBotPageModule)
+    path: 'chatbot',
+    loadChildren: () => import('./pages/chatbot/chatbot.module').then( m => m.ChatbotPageModule)
   },
+
+  // {
+  //   path: 'chat-bot',
+  //   loadChildren: () => import('./pages/chat-bot/chat-bot-routing.module').then( m => m.Cha)
+  // },
 
 
 ];
