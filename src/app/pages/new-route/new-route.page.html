@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nueva Ruta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <form [formGroup]="myForm">
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input formControlName="name"></ion-input>
+          </ion-item>
+          <div>
+            <ng-container *ngFor="let validation of validationMessages['name']">
+              <div class="errormessage"
+                *ngIf="myForm.get('name').hasError(validation.type) && (myForm.get('name').dirty || myForm.get('name').touched)">
+                {{ validation.messnumberRoute }}
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Número de la ruta</ion-label>
+            <ion-input formControlName="numberRoute" type="number"></ion-input>
+          </ion-item>
+          <div>
+            <ng-container *ngFor="let validation of validationMessages['numberRoute']">
+              <div class="errormessage"
+                *ngIf="myForm.get('numberRoute').hasError(validation.type) && (myForm.get('numberRoute').dirty || myForm.get('numberRoute').touched)">
+                {{ validation.messnumberRoute }}
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="newRoute()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
