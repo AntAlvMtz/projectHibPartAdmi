@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Rutas</ion-title>
+    <ion-title>Camiones</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
@@ -18,8 +18,8 @@
                 <ion-text>{{route.name}}</ion-text>
               </div>
             </ion-item>
-            <ion-item-options expandable side="end">
-              <ion-item-option color="danger">
+            <ion-item-options expandable side="end" >
+              <ion-item-option color="danger" (click)="removeRoute(route)">
                 <ion-icon name="trash-outline"></ion-icon>
               </ion-item-option>
             </ion-item-options>

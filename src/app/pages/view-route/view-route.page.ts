@@ -52,4 +52,11 @@ export class ViewRoutePage implements OnInit {
       await alert.present();
     }
 
+    public removeRoute(route:Route){
+      this.routeService.removeRoute(route).subscribe(res=>{
+        this.routeService.getRoutes().subscribe(res=>{
+          this.routes = res;
+        });      
+      });
+    }
 }

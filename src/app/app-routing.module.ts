@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'view-drivers',
     pathMatch: 'full'
   },
   {
@@ -26,7 +26,8 @@ const routes: Routes = [
   {
     path: 'view-drivers',
     loadChildren: () => import('./pages/view-drivers/view-drivers.module').then( m => m.ViewDriversPageModule)
-  },  {
+  },
+  {
     path: 'chatbot',
     loadChildren: () => import('./pages/chatbot/chatbot.module').then( m => m.ChatbotPageModule)
   },
