@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { Route } from 'src/app/models/route';
 import { RouteService } from 'src/app/services/route.service';
 
@@ -15,6 +15,7 @@ export class ViewRoutePage implements OnInit {
 
   constructor(private router: Router,
     private alertController:AlertController,
+    private toastController:ToastController,
     private routeService:RouteService) {
       routeService.getRoutes().subscribe(res=>{
         this.routes = res;
@@ -52,11 +53,45 @@ export class ViewRoutePage implements OnInit {
       await alert.present();
     }
 
-    public removeRoute(route:Route){
-      this.routeService.removeRoute(route).subscribe(res=>{
-        this.routeService.getRoutes().subscribe(res=>{
-          this.routes = res;
-        });      
-      });
+    public async removeRoute(route:Route){
+      const alert = await this.alertController.create({
+        header: 'Confirmación',
+        message: '¿Estás seguro que deseas eliminar el camion '+route.name+'?',
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            handler: () => {
+              
+            },
+          },
+          {
+            text: 'Aceptar',
+            role: 'confirm',
+            handler: () => {
+              this.routeService.removeRoute(route).subscribe(res=>{
+                this.presentToast('bottom',`Se ha eliminado la routa ${route.name}`)
+                this.routeService.getRoutes().subscribe(res=>{
+                  this.routes = res;
+                });      
+              });        
+            }
+          },
+        ],
+      });      
+  
+      await alert.present();      
     }
+
+    public async presentToast(position: 'top' | 'middle' | 'bottom', message:string) {
+      const toast = await this.toastController.create({
+        message,
+        duration: 1500,
+        position,
+        cssClass: 'custom-toast',     
+      });
+  
+      await toast.present();
+    }
+  
 }
