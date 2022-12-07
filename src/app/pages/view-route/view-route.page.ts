@@ -18,8 +18,7 @@ export class ViewRoutePage implements OnInit {
     private routeService:RouteService) {
       routeService.getRoutes().subscribe(res=>{
         this.routes = res;
-        console.log(this.routes);        
-      })
+      });
      }
 
   ngOnInit() {
@@ -31,11 +30,17 @@ export class ViewRoutePage implements OnInit {
         buttons: [{
           text: 'Agregar',
           handler: data =>{
-              console.log(data[0]);              
+              let route:Route = {name:data[0]}
+                 
+              this.routeService.createRoute(route).subscribe(res=>{
+                this.routeService.getRoutes().subscribe(res=>{
+                  this.routes = res;
+                });   
+              })
           }
       }],
         inputs: [
-          {
+          {value:'Progreso 3',
             placeholder: 'Nombre',          
             attributes: {
               minlength: 5,

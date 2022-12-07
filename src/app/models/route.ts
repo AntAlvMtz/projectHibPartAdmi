@@ -1,4 +1,4 @@
 export class Route {
-    _id:string;
+    _id?:string;
     name: string;
 }

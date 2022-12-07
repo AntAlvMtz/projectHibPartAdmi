@@ -11,9 +11,15 @@ export class RouteService {
   url='http://localhost:3000/api/route/'
 
   constructor(private http:HttpClient) { }
+ 
   getRoutes():Observable<any>{
     return this.http.get(this.url).pipe(map(res => {
       return res;
     }));
+  }
+  public createRoute(data:any):Observable<any>{
+    return this.http.post(this.url+"create",data).pipe(map(res=>{   
+      return res;
+    }))
   }
 }
