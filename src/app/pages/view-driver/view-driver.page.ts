@@ -21,10 +21,8 @@ export class ViewDriverPage implements OnInit {
     this.aroute.queryParams.subscribe((params)=>{
       const data ={id:params['_id']};
       console.log(22,data);      
-      this.driverService.getOneDriver(data).subscribe(res=>{     
-      
-          this.driver = res as Driver;      
-          
+      this.driverService.getOneDriver(data).subscribe(res=>{           
+          this.driver = res as Driver;                
       })
       this.photo = 'https://i.stack.imgur.com/l60Hf.png';
       
@@ -32,6 +30,7 @@ export class ViewDriverPage implements OnInit {
   }
 
   public editDriver(){
-
+    this.router.navigate(['edit-driver'],
+      { queryParams: { ...this.driver },  skipLocationChange: true });    
   }
 }

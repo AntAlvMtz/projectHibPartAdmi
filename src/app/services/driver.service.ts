@@ -32,4 +32,10 @@ export class DriverService {
     }))
   }
 
+  updateDriver(data:any):Observable<any>{
+    return this.http.put(this.url+"drivers/create",data).pipe(map(res=>{   
+      return res;
+    }))
+  }
+
 }
