@@ -77,10 +77,7 @@
       <ion-row>
         <ion-item id="item">
           <ion-select interface="popover" formControlName="route" placeholder="Selecciona la ruta">
-            <!--ng-container *ngFor="let r of rooms">
-            <ion-select-option [value]="r.room">{{r.room}}</ion-select-option>
-          </ng-container-->
-            <ion-select-option value="routes">Aquí van las rutas</ion-select-option>
+            <ion-select-option *ngFor="let route of routes">{{route.name}}</ion-select-option>
           </ion-select>
         </ion-item>
         <div>
@@ -92,23 +89,6 @@
           </ng-container>
         </div>
       </ion-row>
-
-      <!--ion-row>
-            <ion-col>
-                <ion-item>
-                    <ion-label position="floating" type="url">Foto</ion-label>
-                    <ion-input formControlName="photo"></ion-input>
-                </ion-item>
-                <div>
-                    <ng-container *ngFor="let validation of validationMessages['photo']">
-                        <div class="errormessage" *ngIf="myForm.get('photo').hasError(validation.type) && (myForm.get('photo').dirty || myForm.get('photo').touched)">
-                            {{ validation.message }}
-                        </div>
-                    </ng-container>
-                </div>
-            </ion-col>
-        </ion-row-->
-
     </form>
   </ion-grid>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">

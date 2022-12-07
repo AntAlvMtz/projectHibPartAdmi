@@ -4,6 +4,8 @@ import { DriverService } from 'src/app/services/driver.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Driver } from 'src/app/models/driver';
+import { RouteService } from 'src/app/services/route.service';
+import { Route } from 'src/app/models/route';
 
 
 @Component({
@@ -14,16 +16,22 @@ import { Driver } from 'src/app/models/driver';
 export class NewDriverPage implements OnInit {
 
   public myForm: FormGroup;
+  public routes:Route[]
   public validationMessages: object;
 
   constructor(private driverService: DriverService, 
+    private routeService:RouteService,
     private fb: FormBuilder,
     private router:Router,
-    private toastController: ToastController) { }
+    private toastController: ToastController) { 
+      routeService.getRoutes().subscribe(res=>{
+        this.routes = res;
+      });
+    }
 
   ngOnInit() {
     this.myForm = this.fb.group({
-      name:["", Validators.required],
+      name:["Daniel", Validators.required],
       age:["15", Validators.compose([Validators.required, Validators.min(18)])],
       phone:["3111590910",Validators.compose([Validators.required,Validators.minLength(10),Validators.maxLength(10)])],
       license:["DAA9916", Validators.compose([Validators.required])],
@@ -66,10 +74,9 @@ export class NewDriverPage implements OnInit {
 
   public newDriver(){
     let data = this.myForm.value as Driver;
-    data = {route:"Progreso 3",enabled:true,...data}
+    data = {enabled:true,...data}    
     this.driverService.createDriver(data).subscribe(res=>{
       console.log(res);
-      
     })
     
   }
