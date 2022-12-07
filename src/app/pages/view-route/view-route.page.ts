@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { Route } from 'src/app/models/route';
+import { RouteService } from 'src/app/services/route.service';
 
 @Component({
   selector: 'app-view-route',
@@ -8,13 +11,40 @@ import { Router } from '@angular/router';
 })
 export class ViewRoutePage implements OnInit {
 
-  constructor(private router: Router) { }
+  public routes:Route[]
+
+  constructor(private router: Router,
+    private alertController:AlertController,
+    private routeService:RouteService) {
+      routeService.getRoutes().subscribe(res=>{
+        this.routes = res;
+        console.log(this.routes);        
+      })
+     }
 
   ngOnInit() {
   }
 
-  public goToNewRoute(): void {
-    this.router.navigate(['/new-route']);
-  }
+  public async createRoute() {     
+      const alert = await this.alertController.create({
+        header: 'Ingrese la nueva ruta',
+        buttons: [{
+          text: 'Agregar',
+          handler: data =>{
+              console.log(data[0]);              
+          }
+      }],
+        inputs: [
+          {
+            placeholder: 'Nombre',          
+            attributes: {
+              minlength: 5,
+            },
+          },
+        ],
+      });
+  
+      await alert.present();
+    }
 
 }
