@@ -68,7 +68,7 @@ export class NewDriverPage implements OnInit {
       duration: 1500,
       position: 'bottom'
     });
-    this.router.navigate([".."]);
+    this.router.navigate(["view-drivers"]);
     await toast.present();
   }
 
@@ -77,6 +77,7 @@ export class NewDriverPage implements OnInit {
     data = {enabled:true,...data}    
     this.driverService.createDriver(data).subscribe(res=>{
       console.log(res);
+      this.presentToast();
     })
     
   }

@@ -13,8 +13,12 @@ export class ViewDriversPage implements OnInit {
   public drivers: Driver[]
 
   constructor(private router: Router,
-    private driverService: DriverService) { }
-    
+    private driverService: DriverService) { 
+    this.driverService.getDrivers().subscribe(res => {
+      console.log(res);
+      this.drivers = res;
+    }) }
+
     ngOnInit() {
       this.driverService.getDrivers().subscribe(res => {
         console.log(res);
@@ -27,13 +31,12 @@ export class ViewDriversPage implements OnInit {
     }
     
     public goToDriver(driver:Driver){      
-      const data = driver._id
-      // this.driverService.getOneDriver(data).subscribe(res=>{
-      //   console.log(res);        
-      // });
+      const data = driver._id;
       this.router.navigate(['view-driver'],{queryParams:{_id:data}})
     }
 
     public removeDriver(i: number) {
     }
+
+    
 }
