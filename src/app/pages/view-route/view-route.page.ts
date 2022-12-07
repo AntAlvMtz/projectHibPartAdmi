@@ -27,7 +27,7 @@ export class ViewRoutePage implements OnInit {
 
   public async createRoute() {     
       const alert = await this.alertController.create({
-        header: 'Ingrese la nueva ruta',
+        header: 'Ingrese el nuevo camión',
         buttons: [{
           text: 'Agregar',
           handler: data =>{

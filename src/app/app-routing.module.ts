@@ -34,7 +34,11 @@ const routes: Routes = [
   {
     path: 'new-route',
     loadChildren: () => import('./pages/new-route/new-route.module').then( m => m.NewRoutePageModule)
+  },  {
+    path: 'edit-driver',
+    loadChildren: () => import('./pages/edit-driver/edit-driver.module').then( m => m.EditDriverPageModule)
   },
+
 
   // {
   //   path: 'chat-bot',
