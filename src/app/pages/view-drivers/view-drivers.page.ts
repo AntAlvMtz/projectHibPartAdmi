@@ -9,32 +9,40 @@ import { DriverService } from 'src/app/services/driver.service';
   styleUrls: ['./view-drivers.page.scss'],
 })
 export class ViewDriversPage implements OnInit {
-  
+
   public drivers: Driver[]
 
   constructor(private router: Router,
-    private driverService: DriverService) { 
+    private driverService: DriverService) {
+    console.log('hola');
     this.driverService.getDrivers().subscribe(res => {
       this.drivers = res;
-    }) }
+    })
+  }
 
-    ngOnInit() {
-      this.driverService.getDrivers().subscribe(res => {
-        this.drivers = res;
-      })
-    }
-    
-    public goToNewDriver(): void {
-      this.router.navigate(['/new-driver']);
-    }
-    
-    public goToDriver(driver:Driver){      
-      const data = driver._id;
-      this.router.navigate(['view-driver'],{queryParams:{_id:data}})
-    }
+  ionViewWillEnter() {    
+    this.driverService.getDrivers().subscribe(res => {
+      this.drivers = res;
+    })
+  }
 
-    public removeDriver(i: number) {
-    }
 
-    
+  ngOnInit() {
+   
+  }
+
+  public goToNewDriver(): void {
+    this.router.navigate(['/new-driver']);
+  }
+
+  public goToDriver(driver: Driver) {
+    const data = driver._id;
+    this.router.navigate(['view-driver'], { queryParams: { _id: data } })
+  }
+
+  public removeDriver(i: number) {
+  }
+
+  ion
+
 }
