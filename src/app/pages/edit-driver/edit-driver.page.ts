@@ -74,7 +74,7 @@ export class EditDriverPage implements OnInit {
 
   async presentToast() {
     const toast = await this.toastController.create({
-      message: 'Chófer agregado',
+      message: 'Chófer actualizado',
       duration: 1500,
       position: 'bottom'
     });
@@ -83,10 +83,9 @@ export class EditDriverPage implements OnInit {
   }
 
   public editDriver(){
-    let data = this.myForm.value as Driver;
-    data = {enabled:true,...data}    
-    this.driverService.createDriver(data).subscribe(res=>{
-      console.log(res);
+    let data = this.myForm.value as Driver; 
+    this.driver = {_id:this.driver._id,...data}
+    this.driverService.updateDriver(this.driver).subscribe(res=>{
       this.presentToast();
     })
     

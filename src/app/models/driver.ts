@@ -5,6 +5,5 @@ export class Driver {
     phone: string;
     license: string;
     route:string;
-    token: string;
     enabled:boolean;
 }

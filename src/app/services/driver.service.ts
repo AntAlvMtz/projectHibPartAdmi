@@ -19,8 +19,6 @@ export class DriverService {
   }
 
   getOneDriver(data:any):Observable<any>{  
-    console.log("service",data);
-    
     return this.http.post(this.url+"drivers/getOne",data).pipe(map(res=>{   
       return res;
     }))
@@ -33,7 +31,8 @@ export class DriverService {
   }
 
   updateDriver(data:any):Observable<any>{
-    return this.http.put(this.url+"drivers/create",data).pipe(map(res=>{   
+    console.log(data);    
+    return this.http.patch(this.url+`drivers/update/${data._id}`,data).pipe(map(res=>{   
       return res;
     }))
   }

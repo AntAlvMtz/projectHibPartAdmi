@@ -15,13 +15,11 @@ export class ViewDriversPage implements OnInit {
   constructor(private router: Router,
     private driverService: DriverService) { 
     this.driverService.getDrivers().subscribe(res => {
-      console.log(res);
       this.drivers = res;
     }) }
 
     ngOnInit() {
       this.driverService.getDrivers().subscribe(res => {
-        console.log(res);
         this.drivers = res;
       })
     }

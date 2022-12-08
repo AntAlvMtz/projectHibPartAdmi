@@ -20,7 +20,6 @@ export class ViewDriverPage implements OnInit {
   ngOnInit() {
     this.aroute.queryParams.subscribe((params)=>{
       const data ={id:params['_id']};
-      console.log(22,data);      
       this.driverService.getOneDriver(data).subscribe(res=>{           
           this.driver = res as Driver;                
       })
